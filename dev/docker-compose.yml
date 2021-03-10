@@ -1,0 +1,24 @@
+version: "3.5"
+
+services:
+  simple-express-crud-api:
+    image: simple-express-crud-api
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        # Pass npm token to have access to repos
+        - NPM_TOKEN
+    working_dir: /app
+    entrypoint:
+      - sleep
+      - "1d"
+    volumes:
+      - ..:/app
+    env_file:
+      - ../local.env
+    environment:
+      DEBUG: express:*
+      AWS_REGION:
+      AWS_ACCESS_KEY_ID:
+      AWS_SECRET_ACCESS_KEY:
